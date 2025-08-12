@@ -144,3 +144,81 @@ I welcome collaborators and contributions! Feel free to open issues, submit pull
 
 *Happy quantum hacking!*
 
+# My Current Plan
+
+## Modular Factoring Plan for Bitcoin Puzzle 71
+
+Bitcoin Puzzle 71 involves factoring a **256-bit composite number \(N = p \times q\)**, which is currently beyond the reach of direct quantum factoring on today’s devices. To tackle this, we use a **modular factoring approach** that breaks the problem into smaller subproblems manageable by ~100-qubit quantum hardware.
+
+---
+
+### Overview
+
+- Directly factoring \(N\) requires thousands of qubits — not feasible now.  
+- We split \(N\) into smaller chunks by guessing parts of the factors \(p\) or \(q\).  
+- Run Shor’s algorithm on smaller subproblems (~30-50 bits) on quantum devices.  
+- Combine partial results classically and iterate until the full factors are found.
+
+---
+
+### How It Works
+
+1. **Classical Preprocessing:**  
+   Use classical algorithms to remove small factors and narrow down candidate bit ranges.
+
+2. **Partial Bit Guessing:**  
+   Guess some known bits of \(p\) (e.g., high or low bits).  
+   Represent \(p\) as:  
+   \[
+   p = p_{\text{known}} \times 2^{k} + p_{\text{unknown}}
+   \]  
+   where \(p_{\text{unknown}}\) is a smaller unknown integer to factor.
+
+3. **Build Quantum Subproblem:**  
+   Construct a smaller integer to factor that depends on \(p_{\text{unknown}}\) and \(N\).  
+   This smaller integer is within the size limits of current quantum hardware.
+
+4. **Run Shor’s Algorithm:**  
+   Factor the smaller integer on a quantum computer or simulator.
+
+5. **Verify and Iterate:**  
+   Combine results to reconstruct \(p\) and \(q\).  
+   Check if \(p \times q = N\).  
+   If not, repeat with new guesses.
+
+---
+
+### Pseudo-code Example
+
+```python
+def modular_factor(N, bit_window_size=40):
+    # Step 1: classical factor removal
+    N_reduced = classical_preprocessing(N)
+
+    # Step 2: generate guesses for known bits of p
+    for p_known_guess in generate_bit_guesses(N, bit_window_size):
+        # Step 3: build subproblem number for unknown bits
+        subproblem_number = build_subproblem(N_reduced, p_known_guess, bit_window_size)
+
+        # Step 4: quantum factoring on subproblem
+        factors = quantum_shor(subproblem_number)
+
+        if factors_found(factors):
+            p_unknown = reconstruct_unknown_bits(factors)
+            p_candidate = combine_bits(p_known_guess, p_unknown, bit_window_size)
+            q_candidate = N // p_candidate
+
+            if p_candidate * q_candidate == N:
+                return p_candidate, q_candidate
+
+    return None, None  # Factors not found yet
+```
+Notes
+
+    The efficiency depends heavily on how well the partial bit guesses are chosen.
+
+    Quantum subproblems should fit within ~30-50 bits factoring range for ~100 qubits usage.
+
+    This is an active research area; developing heuristics and hybrid algorithms is key.
+
+    Parallelizing quantum runs over different guesses can speed up the process.
