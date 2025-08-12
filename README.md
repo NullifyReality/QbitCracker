@@ -1,42 +1,54 @@
 # QbitCracker
 
-My guide to solving **Bitcoin Puzzle 71** with no prior experience (I have yet to solve it).
+A beginner-friendly guide and project to solve **Bitcoin Puzzle 71** using quantum computing and Shor's algorithm — still a work in progress!
 
 ---
 
-### Puzzle Link
+## Why This Project Matters
+
+Bitcoin Puzzle 71 is a cryptographic challenge based on factoring a large number that underpins Bitcoin’s security. Classical computers find this extremely hard, but quantum algorithms like Shor's algorithm offer a potential shortcut. Successfully cracking this puzzle would demonstrate the power of quantum computing and deepen our understanding of cryptography’s future.
+
+---
+
+## Puzzle Link
+
 [Bitcoin Puzzle 71](https://privatekeys.pw/puzzles/bitcoin-puzzle-tx)
 
 ---
 
-## About
+## About Me
 
-I’m new to this — I don’t know much about how private keys work or how quantum searches work either. But I had an idea to use **Shor's algorithm** to crack the puzzle, breaking it down into smaller parts.
+I'm new to cryptography and quantum computing, but I’m excited to learn and apply **Shor's algorithm** to break down this puzzle into smaller, manageable parts. im a hacker at heart so i figured why not give this a shot.
 
-This is a big task, so the first thing I did was educate myself. Below are some of my resources and notes.
+---
+
+## Current Status & Roadmap
+
+- **Learning fundamentals:** Number theory, quantum computing basics, and Shor’s algorithm.  
+- **Building a mock cracker:** Starting with a simplified version solving 15-20 bit factoring puzzles.  
+- **Scaling up:** Aiming to tackle the full Bitcoin Puzzle 71 after validating smaller cases.
 
 ---
 
 ## Basic Number Theory and Cryptography Concepts
 
-- **Prime factorization:** Understanding how to factor a number into primes.
-- **Modular arithmetic:** Concepts like modular exponentiation, modular inverse, and congruences.
-- **Order finding:** The core quantum subroutine in Shor’s algorithm is finding the order of a number modulo *N*.
-- **Why factoring matters:** Bitcoin Puzzle 71 is based on factoring a large number, which is hard classically but can be sped up by Shor’s algorithm.
+- Prime factorization and its difficulty  
+- Modular arithmetic: modular exponentiation, inverse, congruences  
+- Order finding: central to Shor’s algorithm  
+- Why factoring matters for Bitcoin security
 
 **Resource:**  
-I created a free account on Khan Academy and searched for modular arithmetic:  
-[Modular Arithmetic on Khan Academy](https://www.khanacademy.org/search?referer=%2Fcomputing%2Fcomputer-science%2Fcryptography%2Fmodarithmetic&page_search_query=modular+arithmetic)
+[Khan Academy: Modular Arithmetic](https://www.khanacademy.org/search?referer=%2Fcomputing%2Fcomputer-science%2Fcryptography%2Fmodarithmetic&page_search_query=modular+arithmetic)
 
 ---
 
 ## Quantum Computing Fundamentals
 
-- **Qubits and quantum states:** What is a qubit, superposition, and measurement.
-- **Quantum gates:** Basic gates like Hadamard (H), Pauli-X, controlled gates (CNOT), phase gates.
-- **Quantum circuits:** How quantum gates combine to form circuits.
-- **Quantum measurement:** How quantum states collapse to classical bits.
-- **Quantum algorithms overview:** What makes quantum algorithms different and powerful.
+- Qubits, superposition, and measurement  
+- Quantum gates (Hadamard, Pauli-X, CNOT, phase gates)  
+- Quantum circuits and how gates combine  
+- Quantum measurement collapse  
+- Overview of quantum algorithms
 
 **Resources:**  
 - [Qiskit Textbook: Quantum Circuits](https://qiskit.org/textbook/ch-states/quantum-circuits.html)  
@@ -46,66 +58,89 @@ I created a free account on Khan Academy and searched for modular arithmetic:
 
 ## Shor’s Algorithm Theory
 
-- **Problem Shor’s algorithm solves:** Efficient integer factorization.
-- **High-level steps:**
-  1. Pick a random number *a* coprime to *N*.
-  2. Use quantum order-finding to find the order *r* of *a* modulo *N*.
-  3. Use *r* to compute factors of *N*.
-- **Quantum order-finding subroutine:** The quantum part that finds the period of a function.
-- **Classical post-processing:** How to use the order *r* to get factors.
+- The problem it solves: efficient integer factorization  
+- High-level steps:  
+  1. Choose a random coprime *a*  
+  2. Quantum order-finding to find order *r* of *a* mod *N*  
+  3. Compute factors from *r*  
+- Quantum order-finding subroutine explained  
+- Classical post-processing details
 
 **Resources:**  
 - [Qiskit Textbook: Shor’s Algorithm](https://github.com/Qiskit/textbook/tree/main/notebooks/ch-algorithms#shors-algorithm)  
-- Video lectures on Shor’s algorithm (e.g., MIT OpenCourseWare)
+- MIT OpenCourseWare video lectures
 
 ---
 
 ## Qiskit and Quantum Programming
 
-- **Qiskit basics:** How to create quantum circuits, add gates, run simulations.
-- **Using Qiskit’s built-in Shor’s algorithm:** How to call and customize it.
-- **Running on simulators vs real hardware:** Differences and limitations.
-- **Circuit optimization and transpilation:** Making circuits efficient for hardware.
-- **Error mitigation basics:** Handling noise on real devices.
+- Creating quantum circuits and gates  
+- Using Qiskit’s built-in Shor’s algorithm  
+- Simulators vs real quantum hardware  
+- Circuit optimization and transpilation  
+- Basics of error mitigation
 
 **Resources:**  
 - [Qiskit Documentation](https://qiskit.org/documentation/)  
 - [Qiskit Tutorials](https://qiskit.org/documentation/tutorials.html)  
-- IBM Quantum Lab for hands-on practice
+- IBM Quantum Lab for hands-on coding
 
 ---
 
 ## Modular Approach to Large Factoring Problems
 
-- **Why modularize:** Current quantum hardware can’t handle large numbers directly.
-- **Breaking down the problem:** Splitting the factoring into smaller subproblems.
-- **Hybrid quantum-classical algorithms:** Using classical computation to assist quantum parts.
-- **Iterative refinement:** Running parts of the algorithm multiple times and combining results.
+- Why modularize large factoring problems (hardware limits)  
+- Splitting the problem into smaller subproblems  
+- Hybrid quantum-classical strategies  
+- Iterative refinement and combining results
 
 ---
 
 ## Suggested Learning Path
 
-
-| Step | Topic                      | Time Estimate | Suggested Resource                          |
-|-------|----------------------------|---------------|--------------------------------------------|
-| 1     | Number theory basics        | 1-2 days      | Khan Academy modular arithmetic            |
+| Step | Topic                       | Time Estimate | Suggested Resource                          |
+|-------|-----------------------------|---------------|--------------------------------------------|
+| 1     | Number theory basics         | 1-2 days      | Khan Academy modular arithmetic            |
 | 2     | Quantum computing fundamentals | 3-5 days      | Qiskit textbook chapters 1-3                |
-| 3     | Shor’s algorithm theory    | 2-3 days      | Qiskit textbook chapter on Shor’s algorithm |
-| 4     | Qiskit programming basics  | 3-5 days      | Qiskit tutorials and IBM Quantum Lab       |
+| 3     | Shor’s algorithm theory     | 2-3 days      | Qiskit textbook chapter on Shor’s algorithm |
+| 4     | Qiskit programming basics   | 3-5 days      | Qiskit tutorials and IBM Quantum Lab       |
 | 5     | Modular problem decomposition | Ongoing       | Research papers, Qiskit community forums    |
 
 ---
 
-## Summary: What You’ll Be Able to Do After Learning This
+## What You’ll Be Able to Do After This
 
-- Understand the math behind factoring and why it’s hard classically.
-- Understand how Shor’s algorithm uses quantum mechanics to factor efficiently.
-- Write and run quantum circuits in Qiskit.
-- Use Qiskit’s Shor’s algorithm implementation to factor small numbers.
-- Design a modular approach to factor larger numbers by breaking the problem into smaller quantum circuits.
-- Run your code on simulators and real IBM quantum hardware.
+- Understand classical factoring difficulty  
+- Grasp how Shor’s algorithm uses quantum mechanics  
+- Write and run quantum circuits with Qiskit  
+- Use Shor’s algorithm implementation to factor small numbers  
+- Design modular approaches for larger factoring problems  
+- Run code on simulators and IBM quantum hardware
 
 ---
 
-*Feel free to contribute or reach out if you want to collaborate on this journey!*
+## FAQ / Common Challenges
+
+- **Q:** Can current quantum hardware solve Bitcoin Puzzle 71 directly?  
+  **A:** Not yet — hardware limitations require breaking down the problem into smaller pieces.  
+- **Q:** Is this legal?  
+  **A:** This project is for educational purposes only. Attempting to crack private keys without permission is illegal.  
+- **Q:** Where can I contribute?  
+  **A:** See the [Contributing](#contributing) section below.
+
+---
+
+## Contributing
+
+I welcome collaborators and contributions! Feel free to open issues, submit pull requests, or reach out via GitHub.
+
+---
+
+## Contact
+
+- GitHub: [QbitCracker](https://github.com/NullifyReality/QbitCracker)  
+- Email: DTDT@toke.com
+---
+
+*Happy quantum hacking!*
+
